@@ -1,0 +1,34 @@
+---
+title: "Egzamin (pierwszy termin) - Programowanie Strukturalne - Zestaw J08"
+lang: pl
+output:
+  word_document: default
+  pdf_document: default
+---
+
+*Zadanie 1 i 2: po 10 pkt. Zadanie 3 i 4: po 15 pkt.*
+
+*Punktacja: 46-50 pkt - bdb(5,0); 41-45 pkt - db+(4,5); 36-40 pkt - db(4,0); 31-35 pkt - dst+(3,5); 26-30 pkt - dst(3,0); 0-25 pkt - ndst (2,0).* 
+
+Zad.1. Dane są następujące wyrazy i znaki:
+
+```
+fun int int int char n m tab [ ] ) ( , , * **
+```
+
+Ułóż je we właściwej kolejności, aby otrzymać nagłówek funkcji fun, która dostaje jako argumenty kolejno tablicę tablic, napis i jednowymiarową tablicę.  Następnie dodaj dowolną implementację funkcji i stwórz dla niej przypadek testowy.
+
+Zad.2. Napisz funkcję rekurencyjną obliczającą iloczyn liczb nieparzystych od 1 do liczby naturalnej przekazanej jako argument funkcji. Stwórz przypadek testowy tak, aby wyświetlić iloczyn liczb od 1 do 13.
+
+Zad.3. Napisz funkcję, która przyjmuje jako argument listę bez głowy o elementach typu:
+
+```c
+struct node {
+    int z;
+    struct node * next;
+};
+```
+
+Funkcja ma zwrócić sumę wartości bezwzględnych elementów znajdujących się na liście. Stwórz przypadek testowy.
+
+Zad.4. Napisz funkcję, której argumentem jest dwuwymiarowa tablica tablic i jej wymiary $n$ i $m$ oraz liczba naturalna $k$. Funkcja ma zwrócić wskaźnik na nowo-utworzoną dynamiczną tablicę jednowymiarową zawierającą elementy w wierszu o indeksie $k$ (jeśli takiego wiersza nie ma, funkcja ma zwrócić `NULL`). Stwórz przypadek testowy.

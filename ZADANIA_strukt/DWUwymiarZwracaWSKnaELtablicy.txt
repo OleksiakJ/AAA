@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int *cos(int **tab, int n)
+{
+    int k=0;
+    int *nowa=malloc(n*n*sizeof(int));
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            nowa[k]=tab[j][i];
+            k++;
+        }
+    }
+    return nowa;
+}
+
+int main()
+{
+    int ** tablica=malloc(3*sizeof(int*)); //tutaj ile wierszy
+    *tablica=malloc(3*sizeof(int)); // tutaj rezerwacja dla wiersza 0
+    *(tablica+1)=malloc(3*sizeof(int)); //tutaj rezerwacja dla wiersza 1
+    *(tablica+2)=malloc(3*sizeof(int)); //tutaj rezerwacja dla wiersza 2
+
+    tablica[0][0]=1;
+    tablica[0][1]=2;
+    tablica[0][2]=3;
+    tablica[1][0]=10;
+    tablica[1][1]=20;
+    tablica[1][2]=30;
+    tablica[2][0]=100;
+    tablica[2][1]=200;
+    tablica[2][2]=300;
+
+    int * tablica2=cos(tablica,3);
+    for(int i=0; i<9; i++)
+    {
+        printf("%d, ", tablica2[i]);
+    }
+
+    return 0;
+}

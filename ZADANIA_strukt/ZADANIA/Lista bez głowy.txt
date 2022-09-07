@@ -1,0 +1,93 @@
+/////////////////////////////////////////////////////////////
+struct element
+{
+    int i;
+    struct element * next;
+};
+
+struct element * utworz()
+{
+    return NULL;
+};
+
+struct element* dodaj(struct element*Lista, int a)
+{
+    struct element * wsk = malloc(sizeof(struct element));
+    wsk->i=a;
+    wsk->next=Lista;
+    return wsk;
+};
+
+void wypisz(struct element*Lista){
+    struct element * wsk = l1;
+    while(wsk!=NULL)
+    {
+        printf("%d\n",wsk->i);
+        wsk=wsk->next;
+    }
+    print("---\n");
+}
+
+int main()
+{
+    struct element* l1 = utworz();
+    l1 = dodaj(l1,2);
+    l1 = dodaj(l1,4);
+    l1 = dodaj(l1,7);
+    l1 = dodaj(l1,-2);
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////
+
+Przykładowe programy.
+
+//Zliczanie elementow
+int zlicz(struct element *Lista){
+int licznik=0;
+
+while(Lista!=NULL){
+    licznik++;
+    Lista=Lista->next;
+}
+
+return licznik;
+}
+//-------------------------------------------------------
+//Suma elementow
+int suma(struct element *Lista){
+int suma=0;
+
+while(Lista!=NULL){
+    suma += Lista->i;
+    Lista=Lista->next;
+}
+
+return suma;
+}
+//-------------------------------------------------------
+//Maksymalny element
+int max(struct element *Lista){
+int max=Lista->i;
+
+while(Lista!=NULL){
+    if(max<Lista){
+        max = Lista->i;
+    }
+     Lista=Lista->next;
+}
+return max;
+}
+//-------------------------------------------------------
+//Minimalny element
+int min(struct element *Lista){
+int min=Lista->i;
+
+while(Lista!=NULL){
+    if(min>Lista){
+        min = Lista->i;
+    }
+     Lista=Lista->next;
+}
+return min;
+}

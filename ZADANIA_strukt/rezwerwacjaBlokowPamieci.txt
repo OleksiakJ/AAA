@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+#include <stdlib.h>
+
+
+double *rez()
+
+{
+    
+    double *fo=malloc(2*sizeof(double));
+    
+    *fo=3.4;
+    
+    *(fo+1)=-2.8;
+    
+    return fo;
+
+}
+
+
+int main()
+
+{
+  
+    printf("%f",*(rez()));
+  
+    printf("%f",*(rez()+1));
+
+}

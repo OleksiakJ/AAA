@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int dlugosc(char *napis)
+{
+    int i=0;
+    int dlugosc=0;
+    while(napis[i]!=0)
+    {
+        i++;
+        dlugosc++;
+    }
+
+    return dlugosc;
+}
+
+int cos(char *napis1, char *napis2, int n)
+{
+
+    if(dlugosc(napis1)!=dlugosc(napis2))
+    {
+        return 0;
+    }
+    if(dlugosc(napis1)==dlugosc(napis2))
+    {
+        if(napis1[n]<napis2[n])
+        {
+            return 1;
+        }
+        else return 0;
+    }
+}
+
+int main()
+{
+
+    char *napis="ytcch";
+    char *napis2="aleeo";
+    printf("%d", cos(napis,napis2,3));
+    return 0;
+}

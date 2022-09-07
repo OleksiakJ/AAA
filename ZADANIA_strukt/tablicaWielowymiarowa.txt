@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+float tab(int w, int k, float **tab);
+int main()
+{
+    int N;
+    int M;
+    scanf("%d", &N);
+    scanf("%d", &M);
+
+    float **t;
+
+    t = malloc(N*sizeof(float *));
+
+    for (int i =0; i<N;i++)
+    {
+        t[i]=malloc(M*sizeof(double));
+    }
+
+    void dodaj(int N, int M, float **tablica)
+{
+    int i, j;
+    for ( i = 0; i < N; i++ )
+        for ( j = 0; j < M; j++ )
+        {
+            float x;
+            scanf("%f", &x);
+            tablica[i][j] = x;
+        }
+}
+
+
+    dodaj(N, M, t);
+
+	//wyswietlanie
+    for ( int i = 0; i < N; i++ )
+    {
+        for (int j = 0; j < M; j++ )
+            printf("%f", t[i][j]);
+        printf("\n");
+    }
+
+
+    return 0;
+}

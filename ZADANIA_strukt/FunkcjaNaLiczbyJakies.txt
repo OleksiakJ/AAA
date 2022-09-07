@@ -1,0 +1,18 @@
+Napisz funkcjê, której parametrami s¹ trzy dodatnie liczby ca³kowite n, m i k. Funkcja ma zwróciæ 2 jeœli m jest podzielne jednoczeœnie przez n i k, 1 jeœli jest podzielne tylko przez jedn¹ z liczb n lub k oraz zwraca 0 w przeciwnym wypadku. Stwórz przypadek testowy dla funkcji.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int funkcja(int n, int m, int k)
+{
+    if (m % n == 0 && m % k == 0)
+        return 2;
+    if (m % n == 0 || m % k == 0)
+        return 1;
+    return 0;
+}
+int main()
+{
+    printf("%d", funkcja(1, 100, 3));
+    return 0;
+}

@@ -1,0 +1,85 @@
+Napisz funkcjê, która przyjmuje jako argument listê bez g³owy o elementach typu:
+
+
+struct element {
+ 
+   int x;
+    
+struct element * next;
+};
+
+
+
+i zwraca wskaŸnik na pierwszy parzysty element na liœcie. Jeœli lista jest pusta lub nie ma elementów parzystych, funkcja ma zwróciæ NULL. Stwórz jeden przypadek testowy.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct element{
+int i;
+struct element *next;
+};
+
+int *parzysty(struct element *Lista)
+{
+    struct element *wsk = Lista;
+    int *zwraca;
+    if(wsk==NULL)
+    {
+        return NULL;
+        }
+    else
+    {
+        while(wsk!=NULL)
+        {
+            if(wsk->i%2==0)
+            {
+                zwraca=&wsk->i;
+                return  zwraca;
+            }
+             else if(wsk->next==NULL)
+            {
+                return NULL;
+            }
+            else{
+            wsk=wsk->next;
+            }
+        }
+    }
+}
+int main()
+{
+    struct element *Lista = NULL;
+    struct element *wsk = malloc(sizeof(struct element));
+    wsk->i=9;
+    wsk->next=NULL;
+    Lista=wsk;
+    struct element *wsk2 = malloc(sizeof(struct element));
+    wsk2->i=11;
+    wsk2->next=NULL;
+    Lista->next=wsk2;
+    struct element *wsk3 = malloc(sizeof(struct element));
+    wsk3->i=12;
+    wsk3->next=NULL;
+    Lista->next->next=wsk3;
+    //
+    struct element *Lista2 = NULL;
+    struct element *wsk8 = malloc(sizeof(struct element));
+    wsk8->i=3;
+    wsk8->next=NULL;
+    Lista2=wsk8;
+     struct element *wsk10 = malloc(sizeof(struct element));
+    wsk10->i=13;
+    wsk10->next=NULL;
+    Lista2->next=wsk10;
+    //
+     struct element *Lista1 = NULL;
+    // TEST DLA PUSTEJ LISTY
+    printf("%d\n",parzysty(Lista1));
+    //TEST DLA LISTY BEZ PARZYSTYCH
+    printf("%d\n",parzysty(Lista2));
+    // TEST DLA LISTY Z PARZYSTYMI
+    printf("%d\n",*parzysty(Lista));
+    return 0;
+}

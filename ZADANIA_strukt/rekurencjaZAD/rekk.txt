@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+int funkcja(int n)
+{
+    if (n == 0 || n == 1)
+        return 1;
+    if (n % 2 == 0)
+        return funkcja(n/2) + 2;
+    else
+        return funkcja(n-1) - n/2;
+}
+int main()
+{
+    printf("%d", funkcja(4));
+    printf("%d\n", funkcja(6));
+    return 0;
+}

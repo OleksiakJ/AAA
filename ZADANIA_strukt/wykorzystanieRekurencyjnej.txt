@@ -1,0 +1,38 @@
+Napisz program, który wyœwietla na konsoli sumê liczb nieparzystych od 11 do 67. W programie wykorzystaj samodzielnie napisan¹ funkcjê rekurencyjn¹.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int suma(int n,int wynik)
+{
+    if(n>=11)
+    {
+        if(n%2!=0)
+        {
+            wynik+=n;
+            return suma(n-1,wynik);
+        }
+        else
+            n--;
+         return suma(n,wynik);
+    }else
+    return wynik;
+}
+    int main()
+    {
+        //jak ma wygladac poprawny wynik
+        int wynik=0;
+        for(int i=11;i<=67;i++)
+        {
+            if(i%2!=0)
+            {
+                wynik+=i;
+            }
+        }
+    printf("wynik to %d\n",wynik);
+    //koniec testowej 
+    int  result;
+    result = suma(67,0);
+    printf("sum = %d", result);
+    return 0;
+}

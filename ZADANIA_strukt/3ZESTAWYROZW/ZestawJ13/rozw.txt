@@ -1,0 +1,186 @@
+#ZAD2
+Napisz funkcjê, która otrzymuje cztery argumenty: dodatni¹ liczbê ca³kowit¹ m, liczbê ca³kowit¹
+n oraz dwie m-elementowe tablice tab1 i tab2 o elementach typu int. Funkcja ma zwróciæ liczbê ile liczb
+wiêkszych ni¿ n jest w tablicy tab1 i tab2. Stwórz dwa przypadki testowe dla funkcji.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int foo(int m, int n,int tab1[m], int tab2[m])
+{
+    int licznik=0;
+    for(int i=0;i<m;i++)
+    {
+        if (tab1[i]>n)
+            licznik++;
+        if (tab2[i]>n)
+            licznik++;
+    }
+    return licznik;
+}
+
+int main()
+{
+    int tablica1[] ={2,3,4,5,6};
+    int tablica2[]= {2,11,22,33,33};
+    printf("%d\n",foo(5,4,tablica1,tablica2));
+    int tablica3[] ={1,2,3};
+    int tablica4[]= {-1,-2,-2};
+    printf("%d\n",foo(3,4,tablica3,tablica4));
+    return 0;
+}
+
+
+
+##ZAD3
+Napisz funkcjê, której argumentem jest dwuwymiarowa tablica tablic i jej wymiary n i m. Funkcja
+ma zadanie odwróciæ elementy tablicy z osobna w ka¿dym wierszu. Stwórz przypadek testowy.
+#include <stdio.h>
+#include <stdlib.h>
+
+void odwroc(int** tab, int n, int m)
+{
+    int k=1;
+    for(int i=0;i<n;i++)
+    {
+        k=1;
+        for(int j=0;j<m/2;j++)
+        {
+            int temp=tab[i][j];
+            tab[i][j]=tab[i][j+m-k];
+            tab[i][j+m-k]=temp;
+            k+=2;
+        }
+    }
+}
+
+void wypisz(int** tab, int n, int m)
+{
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            printf("%d ", tab[i][j]);
+        }
+        printf("\n");
+    }
+    printf("----\n");
+}
+
+int main()
+{
+    int ** tablica=malloc(2*sizeof(int*));
+    *tablica=malloc(3*sizeof(int));
+    *(tablica+1)=malloc(3*sizeof(int));
+    tablica[0][0]=1;
+    tablica[0][1]=2;
+    tablica[0][2]=3;
+    tablica[1][0]=1;
+    tablica[1][1]=2;
+    tablica[1][2]=3;
+
+    wypisz(tablica,2,3);
+    odwroc(tablica,2,3);
+    wypisz(tablica,2,3);
+    return 0;
+}
+
+
+
+#ZAD4
+Napisz funkcjê, która otrzymuje jako argument listê bez g³owy o elementach typu:
+struct node {
+int w;
+struct node * next;
+};
+Funkcja ma usun¹æ z listy wszystkie elementy nieparzyste. Stwórz przypadek testowy.
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int w;
+    struct node * next;
+};
+
+
+//kod podobny by³ w zbiorze w 7.3.7, funkcja usuwa jeden element o podanej wartosci
+
+struct node* usunElement(struct node *lista,int a)
+{
+    if (lista==NULL)
+    {
+        return NULL;
+    }
+    struct node * wsk=lista;
+    if (lista->w==a)
+    {
+        lista=lista->next;
+        free(wsk);
+    }
+    else
+    {
+        while((wsk->next!=NULL)&&(wsk->next->w!=a))
+        {
+            wsk=wsk->next;
+        }
+        if (wsk->next!=NULL)
+        {
+            struct node*wsk2=wsk->next;
+            wsk->next=wsk2->next;
+            free(wsk2);
+        }
+    }
+    return lista;
+}
+
+
+
+//g³owna funkcja wymagana w poleceniu
+struct node* foo(struct node* lista)
+{
+    struct node* wsk=lista;
+    while(wsk!=NULL)
+    {
+        if(wsk->w%2==1 || wsk->w%2==-1) // tu mozna bylo tez nie patrzec na ujemne (odpowiedŸ byla uznawana)
+        {
+            lista=usunElement(lista,wsk->w);
+            wsk=lista;
+        }
+        else
+        {
+            wsk=wsk->next;
+        }
+    }
+    return lista;
+}
+
+void wyswietlListeBezGlowy(struct node* lista)
+{
+    if(lista==NULL)
+    {
+        printf("Pusta lista\n");
+    }
+    struct node * temp=lista;
+    while(temp!=NULL)
+    {
+        printf("%d\n",temp->w);
+        temp=temp->next;
+    }
+    printf("---\n");
+}
+
+
+int main()
+{
+    struct node*lista=malloc(sizeof(struct node));
+    lista->w=-3;
+    lista->next=malloc(sizeof(struct node));
+    lista->next->w=-11;
+    lista->next->next=malloc(sizeof(struct node));
+    lista->next->next->w=1;
+    lista->next->next->next=NULL;
+    wyswietlListeBezGlowy(lista);
+    lista=foo(lista);
+    wyswietlListeBezGlowy(lista);
+    return 0;
+}

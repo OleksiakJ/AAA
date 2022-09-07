@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int suma(int **tab, int wiersze, int kolumny)
+{
+    int suma=0;
+    for (int i=0; i<wiersze; i++)
+    {
+        for(int j=0; j<kolumny; j++)
+        {
+            if(j%2==1)
+            {
+                if(i==0 || i==wiersze-1)
+                {
+                    suma+=tab[i][j];
+                }
+                else if(j==0 || j==kolumny-1)
+                {
+                    suma+=tab[i][j];
+                }
+            }
+        }
+    }
+    return suma;
+}
+
+int main()
+{
+    int N;
+    int M;
+    scanf("%d", &N);
+    scanf("%d", &M);
+    printf("dalej");
+
+    float **t; //MOJA TABLICA
+
+    t = malloc(N*sizeof(int *));
+    if (t==NULL)
+    {
+        printf("nie moge przydzielic");
+    }
+    for (int i =0; i<N;i++)
+    {
+        t[i]=malloc(M*sizeof(int));
+        if (t==NULL)
+        {
+            printf("nie moge przydzielic");
+        }
+    }
+    void dodajDoTablicy(int N, int M, int **tablica)
+    {
+    int i, j;
+    for ( i = 0; i < N; i++ )
+        for ( j = 0; j < M; j++ )
+        {
+            float x;
+            scanf("%f", &x);
+            tablica[i][j] = x;
+        }
+    }
+
+    dodajDoTablicy(N, M, t);
+    printf("%d", suma(t, N,M));
+
+    return 0;
+}

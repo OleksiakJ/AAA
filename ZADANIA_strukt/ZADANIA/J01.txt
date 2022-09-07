@@ -1,0 +1,102 @@
+/*Zadanie 1.
+int foo(int*a,int*b)
+{
+    return *a-*b+1;
+}
+
+int main()
+{
+    int tab[] = {23,6,3,-7,20,22,8,1};
+    int *wsk=tab-2;
+    int b = *(wsk+=3); //b=6
+    int c = b+2; // b=6 , c=8
+    int d = foo(&c,&b); // b=6  , c=8  , d=3
+    int e = (wsk+=-2)[-1]; // b=6  , c=8  , d=3  , e=8
+    e = (d *= 2) + (c /= 2); // b=6  , c=4  , d=6  , e=10
+    c = d - (b+=4); // b=10  , c=-4  , d=6  , e=10
+    b = *wsk + e; // b=20  , c=-4  , d=6  , e=10
+    return 0;
+}
+*/
+/*Zadanie 2.
+void foo(int n,int tab1[n],int tab2[n],int tab3[2*n]){
+    for(int i=0;i<n;i++){
+        tab3[i]=tab2[i];
+        tab3[n+i]=tab1[i]-tab2[i];
+    }
+}
+
+int main(){
+    int tab1[4]={1,2,3,4};
+    int tab2[4]={1,2,3,4};
+    int tab3[8]={4,5,6,7,2,5,7,6};
+    foo(4,tab1,tab2,tab3);
+    for(int i=0;i<8;i++){
+            printf("%d\n",tab3[i]);
+    }
+}
+*/
+/*Zadani 3.
+struct node{
+    int x;
+    struct node * next;
+};
+
+struct node * utworz(){
+    return NULL;
+};
+
+struct node * dodaj(struct node*Lista, int a){
+    struct node * wsk = malloc(sizeof(struct node));
+    wsk->x=a;
+    wsk->next=Lista;
+    return wsk;
+};
+
+bool sprawdz(struct node*l1,struct node*l2){
+    int suma1=0;
+    int suma2=0;
+
+    struct node * wsk1=l1;
+
+
+    while(wsk1!=NULL){
+        if(wsk1->x%2==1){
+            suma1+=wsk1->x;
+        }
+        wsk1=wsk1->next;
+    }
+
+    struct node * wsk2=l2;
+
+    while(wsk2!=NULL){
+        if(wsk2->x%2==1){
+            suma2+=wsk2->x;
+        }
+        wsk2=wsk2->next;
+    }
+
+    if(suma1==suma2){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
+
+
+int main(){
+    struct node*lista1 = utworz();
+    lista1=dodaj(lista1,1);
+    lista1=dodaj(lista1,2);
+    lista1=dodaj(lista1,3);
+
+    struct node*lista2 = utworz();
+    lista2=dodaj(lista2,3);
+    lista2=dodaj(lista2,1);
+
+    printf("%d",sprawdz(lista1,lista2));
+
+}
+*/

@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int rekurencja(int n)
+{
+    int a0=1;
+    int a1=2;
+    if(n==0) return a0;
+    if(n==1) return a1;
+    if(n%2==0) return rekurencja(n-2)+n;
+    if(n%2==1) return rekurencja(n-2)*n;
+}
+int rekurencja()
+{
+    for (int i = 0; i<10; i++)
+    {
+        printf("%d\n", rekurencja(i));
+    }
+    return 0;
+}

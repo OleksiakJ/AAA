@@ -1,0 +1,49 @@
+Stwórz strukturê Auto o dwóch polach model (napis) oraz pojemnosc_silnika (dowolny typ ca³kowity). Nastêpnie stwórz funkcjê, której argumentami jest tablica struktur Auto oraz rozmiar tablicy. Funkcja ma zwróciæ model auta o najmniejszej pojemnoœci silnika. Stwórz przypadek testowy.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Auto {
+char *model;
+int pojemnosc_silnika;
+};
+char *funkcja(struct Auto *a,int n)
+{
+    char *wynik;
+    if(a[0].pojemnosc_silnika>a[2].pojemnosc_silnika&&a[2].pojemnosc_silnika<a[1].pojemnosc_silnika)
+        {
+            wynik=a[2].model;
+            return wynik;
+        }
+    else if(a[0].pojemnosc_silnika<a[1].pojemnosc_silnika&&a[2].pojemnosc_silnika>a[0].pojemnosc_silnika)
+    {
+        wynik=a[0].model;
+        return wynik;
+    }
+    else if(a[0].pojemnosc_silnika>a[1].pojemnosc_silnika&&a[1].pojemnosc_silnika<a[2].pojemnosc_silnika)
+    {
+        wynik=a[1].model;
+        return wynik;
+    }
+}
+int main()
+{
+    struct Auto b;
+    b.model="citroen";
+    b.pojemnosc_silnika=10;
+    struct Auto c;
+    c.model="ciquecento";
+    c.pojemnosc_silnika=4;
+    struct Auto d;
+    d.model="Porshefrom1944";
+    d.pojemnosc_silnika=1;
+    struct Auto t[3];
+    t[0].model=c.model;
+    t[0].pojemnosc_silnika=c.pojemnosc_silnika;
+    t[1].model=b.model;
+    t[1].pojemnosc_silnika=b.pojemnosc_silnika;
+    t[2].model=d.model;
+    t[2].pojemnosc_silnika=d.pojemnosc_silnika;
+    printf("%s",funkcja(t,3));
+    return 0;
+}

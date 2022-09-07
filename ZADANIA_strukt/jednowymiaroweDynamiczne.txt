@@ -1,0 +1,53 @@
+Napisz funkcje porównuj¹ca dwie tablice jednowymiarowe o takich samych rozmiarach o wartoœciach typu `float`. Funkcja ma zwróciæ 1, gdy elementy w obu tablicach s¹ "równe", a 0 w przeciwnym wypadku. Przyjmij, ¿e dwa elementy typu `float` s¹ "równe", jeœli wartoœæ bezwzglêdna ich ró¿nicy jest mniejsza lub równa 0.1. Stwórz dwa przypadki testowe dla funkcji.
+
+
+Rozwi¹¿ zadanie na dwa sposoby (za pomoc¹ notacji tablicowej pot. nawiasów kwadratowych oraz za pomoc¹ wskaŸników pot. gwiazdek).
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+float abs(float n)
+{
+    if (n < 0)
+        n *= (-1);
+    return n;
+}
+bool funkcja1(float tab1[], float tab2[], size_t size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            float warunek = abs(tab1[i] - tab2[j]);
+            if (warunek > 0.1)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+int funkcja2(float* tab1, float* tab2, size_t size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++)
+        {
+            float warunek = abs(tab1[i] - tab2[j]);
+            if (warunek > 0.1)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+int main()
+{
+    float tab1[] = { 1.01, 1.0, 1.0, 1.0, 1.0 };
+    float tab2[] = { 1.0, 1.0, 1.0, 1.0, 1.0 };
+    printf("%d\n", funkcja1(tab1, tab2, sizeof(tab1)/sizeof(tab1[0])));
+    printf("%d\n", funkcja1(&tab1, &tab2, sizeof(tab1)/sizeof(tab1[0])));
+    return 0;
+}

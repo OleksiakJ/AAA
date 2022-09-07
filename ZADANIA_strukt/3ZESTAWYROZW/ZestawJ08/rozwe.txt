@@ -1,0 +1,164 @@
+#ZAD2
+Napisz funkcjê rekurencyjn¹ obliczaj¹c¹ iloczyn liczb nieparzystych od 1 do liczby naturalnej
+przekazanej jako argument funkcji. Stwórz przypadek testowy tak, aby wyœwietliæ iloczyn liczb od 1 do 13
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int foo(int n)
+{
+    if (n==0)
+        return 1;
+    if (n==1)
+        return 1;
+    if (n%2==0)
+        return foo(n-1);
+    return foo(n-2)*n;
+}
+
+int main()
+{
+    printf("%d",foo(13));
+    return 0;
+}
+
+
+
+#ZAD3
+Napisz funkcjê, która przyjmuje jako argument listê bez g³owy o elementach typu:
+struct node {
+int z;
+struct node * next;
+};
+Funkcja ma zwróciæ sumê wartoœci bezwzglêdnych elementów znajduj¹cych siê na liœcie. Stwórz przypadek
+testowy.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int z;
+    struct node * next;
+};
+
+int sumabs(struct node * lista)
+{
+    int suma=0;
+    struct node*wsk=lista;
+    while(wsk!=NULL)
+    {
+        suma+=abs(wsk->z);
+        wsk=wsk->next;
+    }
+    return suma;
+}
+
+int main()
+{
+    struct node* lista=malloc(sizeof(struct node));
+    lista->z=-3;
+    lista->next=malloc(sizeof(struct node));
+    lista->next->z=4;
+    lista->next->next=NULL;
+    printf("%d\n",sumabs(lista));
+    return 0;
+}
+
+
+
+#ZAD4
+Napisz funkcjê, której argumentem jest dwuwymiarowa tablica tablic i jej wymiary n i m oraz
+liczba naturalna k. Funkcja ma zwróciæ wskaŸnik na nowo-utworzon¹ dynamiczn¹ tablicê jednowymiarow¹
+zawieraj¹c¹ elementy w wierszu o indeksie k (jeœli takiego wiersza nie ma, funkcja ma zwróciæ NULL). Stwórz
+przypadek testowy
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int * foo(int** tab, int n, int m, int k)
+{
+    if(k>=n)
+        return NULL;
+    int * tabNew = malloc(n*m*sizeof(int));
+    for(int j=0;j<m;j++)
+    {
+        *(tabNew+j)=*(*(tab+k)+j);
+    }
+    return tabNew;
+}
+
+int main()
+{
+    int ** tablica=malloc(3*sizeof(int*));
+    *tablica=malloc(3*sizeof(int));
+    *(tablica+1)=malloc(3*sizeof(int));
+    *(tablica+2)=malloc(3*sizeof(int));
+    *(*(tablica+0)+0)=-2;
+    *(*(tablica+0)+1)=4;
+    *(*(tablica+0)+2)=5;
+    *(*(tablica+1)+0)=23;
+    *(*(tablica+1)+1)=-5;
+    *(*(tablica+1)+2)=7;
+    *(*(tablica+2)+0)=88;
+    *(*(tablica+2)+1)=11;
+    *(*(tablica+2)+2)=-3;
+    int * tablica2=foo(tablica,3,3,2);
+    if (tablica2!=NULL) {
+        for (int i = 0; i < 3; i++) {
+            printf("%d\n", *(tablica2 + i));
+        }
+    }
+    else
+    {
+        printf("pusto\n");
+    }
+    return 0;
+}
+
+
+////DRUGI MOJE
+#include <stdio.h>
+#include <stdlib.h>
+
+int * foo(int** tab, int n, int m, int k)
+{
+    if(k>=n)
+        return NULL;
+    int * tabNew = malloc(n*m*sizeof(int));
+    for(int i=0;i<m;i++)
+    {
+        tabNew[i]=tab[k][i];
+    }
+    return tabNew;
+}
+
+int main()
+{
+    int ** tablica=malloc(3*sizeof(int*)); //tutaj ze bedzxie  3x3
+    *tablica=malloc(3*sizeof(int)); // tutaj rezerwacja dla wiersza 0
+    *(tablica+1)=malloc(3*sizeof(int)); //tutaj rezerwacja dla wiersza 1
+    *(tablica+2)=malloc(3*sizeof(int)); //tutaj rezerwacja dla wiersza 2
+
+    tablica[0][0]=1;
+    tablica[0][1]=2;
+    tablica[0][2]=3;
+    tablica[1][0]=10;
+    tablica[1][1]=20;
+    tablica[1][2]=30;
+    tablica[2][0]=100;
+    tablica[2][1]=200;
+    tablica[2][2]=300;
+
+    int * tablica2=foo(tablica,3,3,1);
+    if (tablica2!=NULL) {
+        for (int i = 0; i < 3; i++)
+        {
+            printf("%d, ", tablica2[i]);
+        }
+    }
+    else
+    {
+        printf("pusto\n");
+    }
+    return 0;
+}

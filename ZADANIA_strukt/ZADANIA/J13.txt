@@ -1,0 +1,127 @@
+/*Zadanie 1.
+int funkcja(const int *a,const int *b)
+{
+    return *a+*b;
+}
+
+int main()
+{
+    int x=5,y=7;
+    printf("%d",funkcja(&x,&y));
+    return 0;
+}
+*/
+/*Zadanie 2.
+int zlicz(int m,int n, int tab1[m],int tab2[m]){
+    int liczba=0;
+    for(int i=0;i<m;i++){
+        if(tab1[i]>n){
+            liczba++;
+        }
+    }
+
+    for(int i=0;i<m;i++){
+        if(tab2[i]>n){
+            liczba++;
+        }
+    }
+
+    return liczba;
+}
+
+int main(){
+    int tablica1[4]={4,5,6,1};
+    int tablica2[4]={6,1,0,1};
+
+    printf("%d\n",zlicz(4,2,tablica1,tablica2));
+
+    int tablica3[4]={0,1,2,4};
+    int tablica4[4]={6,5,7,1};
+
+    printf("%d",zlicz(4,10,tablica3,tablica4));
+
+}
+*/
+/*Zadanie 4.
+struct node {
+    int w;
+    struct node * next;
+};
+
+struct node* usunElement(struct node *lista,int a)
+{
+    if (lista==NULL)
+    {
+        return NULL;
+    }
+    struct node * wsk=lista;
+    if (lista->w==a)
+    {
+        lista=lista->next;
+        free(wsk);
+    }
+    else
+    {
+        while((wsk->next!=NULL)&&(wsk->next->w!=a))
+        {
+            wsk=wsk->next;
+        }
+        if (wsk->next!=NULL)
+        {
+            struct node*wsk2=wsk->next;
+            wsk->next=wsk2->next;
+            free(wsk2);
+        }
+    }
+    return lista;
+}
+
+
+struct node* foo(struct node* lista)
+{
+    struct node* wsk=lista;
+    while(wsk!=NULL)
+    {
+        if(wsk->w%2==1)
+        {
+            lista=usunElement(lista,wsk->w);
+            wsk=lista;
+        }
+        else
+        {
+            wsk=wsk->next;
+        }
+    }
+    return lista;
+}
+
+void wyswietlListeBezGlowy(struct node* lista)
+{
+    if(lista==NULL)
+    {
+        printf("Pusta lista\n");
+    }
+    struct node * temp=lista;
+    while(temp!=NULL)
+    {
+        printf("%d\n",temp->w);
+        temp=temp->next;
+    }
+    printf("---\n");
+}
+
+
+int main(){
+    struct node*lista=malloc(sizeof(struct node));
+    lista->w=-3;
+    lista->next=malloc(sizeof(struct node));
+    lista->next->w=-11;
+    lista->next->next=malloc(sizeof(struct node));
+    lista->next->next->w=1;
+    lista->next->next->next=NULL;
+    wyswietlListeBezGlowy(lista);
+    lista=foo(lista);
+    wyswietlListeBezGlowy(lista);
+    return 0;
+}
+*/

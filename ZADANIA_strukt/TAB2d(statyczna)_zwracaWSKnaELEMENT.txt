@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int *zwroc(int n, int m, int tab[n][m])
+{
+    int *wsk;
+    wsk=tab[n-1][0];
+    return wsk;
+}
+
+
+int main()
+{
+    int tablica[3][3];
+
+    tablica[0][0]=1;
+    tablica[0][1]=2;
+    tablica[0][2]=3;
+    tablica[1][0]=10;
+    tablica[1][1]=20;
+    tablica[1][2]=30;
+    tablica[2][0]=100;
+    tablica[2][1]=200;
+    tablica[2][2]=300;
+    int a=zwroc(3,3,tablica);
+    a--;
+    printf("%d", a);
+    return 0;
+}

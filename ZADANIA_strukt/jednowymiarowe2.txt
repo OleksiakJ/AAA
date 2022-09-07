@@ -1,0 +1,38 @@
+Napisz funkcjê, która otrzymuje cztery argumenty: dodatni¹ liczbê ca³kowit¹ m, liczbê ca³kowit¹ n oraz dwie m-elementowe tablice `tab1` i `tab2` o elementach typu `int`. Funkcja ma zwróciæ liczbê ile podzielnych przez n jest w tablicach `tab1` i `tab2`. Stwórz dwa przypadki testowe dla funkcji.
+Rozwi¹¿ zadanie na dwa sposoby (za pomoc¹ notacji tablicowej pot. nawiasów kwadratowych oraz za pomoc¹ wskaŸników pot. gwiazdek
+
+
+#include <stdio.h>
+#include <stdlib.h>
+int funkcja1(int m, int n, int tab1[], int tab2[])
+{
+    int result = 0;
+    for (int i = 0; i < m; i++)
+    {
+        if (tab1[i] % n == 0)
+            result++;
+        if (tab2[i] % n == 0)
+            result++;
+    }
+    return result;
+}
+int funkcja2(int m, int n, int* tab1, int* tab2)
+{
+    int result = 0;
+    for (int i = 0; i < m; i++)
+    {
+        if (tab1[i] % n == 0)
+            result++;
+        if (tab2[i] % n == 0)
+            result++;
+    }
+    return result;
+}
+int main()
+{
+    int tab1[] = { 1,2,3,4,5 };
+    int tab2[] = { 6,7,8,9,10 };
+    printf("%d\n", funkcja1(5, 2, tab1, tab2));
+    printf("%d", funkcja2(5, 2, &tab1, &tab2));
+    return 0;
+}

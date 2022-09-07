@@ -1,0 +1,74 @@
+/*
+Zadanie 1.
+int main()
+{
+    char wyraz[]="trzytrzy";
+    char * w= wyraz;  // w=0x61fe0a   , * w='t'
+    int q = sizeof(char); // q=1
+    w = wyraz+5; // w=0x61fe0f   , * w='r'
+    char t = *wyraz+1; //t='u'    , &t=0x61fe13
+    w =&(*(wyraz+4))-2; // w=0x61fe0c   , * w='z'
+    t = *(wyraz+2);   //t='z'    , &t=0x61fe13
+    *w=(wyraz+5)[-3]; // w=0x61fe0c    , *w='z'
+    return 0;
+}
+*/
+/*
+Zadanie 2.
+int main(){
+    int tab[20];
+    tab[0]=0;
+    tab[1]=1;
+    for(int i=2;i<20;i++){
+        tab[i]=tab[i-1]+tab[i-2];
+    }
+    for(int i=0;i<20;i++){
+        printf("Wyraz %d: %d \n",i+1,tab[i]);
+    }
+}
+*/
+/*
+Zadanie 4.
+struct element{
+    int w;
+    struct element * next;
+};
+
+struct element * utworz(){
+    return NULL;
+};
+
+struct elemen* dodaj (struct element*Lista,int a){
+    struct element * wsk = malloc(sizeof(struct element));
+    wsk->w=a;
+    wsk->next=Lista;
+    return wsk;
+
+};
+
+void wypisz(struct element * Lista){
+while(Lista!=NULL){
+            printf("%d\n",Lista->w);
+    Lista=Lista->next;
+}
+printf("\n");
+}
+
+void pomnoz(struct element *Lista,int x){
+    while(Lista!=NULL){
+        Lista->w=(x*x*x)*Lista->w;
+        Lista=Lista->next;
+    }
+}
+
+int main(){
+    struct element* l1 = utworz();
+    l1=dodaj(l1,2);
+    l1=dodaj(l1,1);
+    l1=dodaj(l1,3);
+    l1=dodaj(l1,4);
+    wypisz(l1);
+    pomnoz(l1,2);
+    wypisz(l1);
+}
+*/

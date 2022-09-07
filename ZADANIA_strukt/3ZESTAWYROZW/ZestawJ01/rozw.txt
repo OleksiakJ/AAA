@@ -1,0 +1,137 @@
+#ZAD2
+Napisz funkcjê, która otrzymuje cztery argumenty: dodatni¹ liczbê ca³kowit¹ n, n-elementowe tablice
+tab1 i tab2 oraz 2 · n-elementow¹ tablicê tab3 o elementach typu int. Funkcja powinna ustawiæ elementy
+tak, aby na pocz¹tku tablicy tab3 powinny siê znaleŸæ elementy tablicy tab2, a po nich elementy bêd¹ce
+ró¿nic¹ poszczególnych elementów tablicy tab1 i tab2. Stwórz dwa przypadki testowe.
+#include <stdio.h>
+#include <stdlib.h>
+
+void foo(int n, int tab1[n], int tab2[n],int tab3[2*n])
+{
+    for(int i=0;i<n;i++)
+    {
+        tab3[i]=tab2[i];
+        tab3[n+i]=tab1[i]-tab2[i];
+    }
+}
+
+int main()
+{
+    int tablica1[4]={1,2,3,4};
+    int tablica2[4]={8,2,3,-1};
+    int tablica3[]={1,2,3,4,5,5,6,6};
+    foo(4,tablica1,tablica2,tablica3);
+    for(int i=0;i<8;i++)
+    {
+        printf("%d\n", tablica3[i]);
+    }
+    return 0;
+}
+
+
+
+#ZAD3
+Napisz funkcjê, która porównuje dwie listy bez g³owy o elementach typu:
+struct node {
+int x;
+struct node * next;
+};
+i zwraca 1 jeœli suma szeœcianów elementów nieparzystych na obu listach jest równa oraz 0 w pozosta³ych
+przypadkach. Stwórz jeden przypadek testowy
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int x;
+    struct node * next;
+};
+
+int sumaszescian(struct node * lista)
+{
+    struct node * wsk=lista;
+    int suma=0;
+    while (wsk!=NULL)
+    {
+        if(wsk->x%2==1)
+        {
+            suma+=wsk->x;
+        }
+        wsk=wsk->next;
+    }
+    return suma;
+}
+
+int foo(struct node* lista1, struct  node* lista2)
+{
+    if (sumaszescian(lista1)==sumaszescian(lista2))
+        return 1;
+    return 0;
+}
+
+int main()
+{
+    struct node* list1= malloc(sizeof(struct node));
+    list1->x=1;
+    list1->next=malloc(sizeof(struct node));
+    list1->next->x=2;
+    list1->next->next=malloc(sizeof(struct node));
+    list1->next->next->x=3;
+    list1->next->next->next=NULL;
+    struct node* list2= malloc(sizeof(struct node));
+    list2->x=3;
+    list2->next=malloc(sizeof(struct node));
+    list2->next->x=1;
+    list2->next->next=NULL;
+    printf("%d\n",foo(list1,list2));
+    return 0;
+}
+
+
+
+#ZAD4
+ Napisz funkcjê, której argumentem jest dwuwymiarowa tablica tablic i jej wymiary n i m. Funkcja
+ma stworzyæ dynamiczn¹ n · m elementow¹ tablicê jednowymiarow¹ powsta³¹ z przepisanie kolejno wierszami
+elementów tablicy bêd¹cej argumentem funkcji. Funkcja ma zwróciæ wskaŸnik do nowo utworzonej tablicy.
+Stwórz przypadek testowy.
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int * foo(int** tab, int n, int m)
+{
+    int * tabNew = malloc(n*m*sizeof(int));
+    int k=0;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            *(tabNew+k)=*(*(tab+i)+j);
+            k++;
+        }
+    }
+    return tabNew;
+}
+
+int main()
+{
+    int ** tablica=malloc(3*sizeof(int*));
+    *tablica=malloc(3*sizeof(int));
+    *(tablica+1)=malloc(3*sizeof(int));
+    *(tablica+2)=malloc(3*sizeof(int));
+    *(*(tablica+0)+0)=-2;
+    *(*(tablica+0)+1)=4;
+    *(*(tablica+0)+2)=5;
+    *(*(tablica+1)+0)=23;
+    *(*(tablica+1)+1)=-5;
+    *(*(tablica+1)+2)=7;
+    *(*(tablica+2)+0)=88;
+    *(*(tablica+2)+1)=11;
+    *(*(tablica+2)+2)=-3;
+    int * tablica2=foo(tablica,3,3);
+    for(int i=0;i<9;i++)
+    {
+        printf("%d\n",*(tablica2+i));
+    }
+    return 0;
+}

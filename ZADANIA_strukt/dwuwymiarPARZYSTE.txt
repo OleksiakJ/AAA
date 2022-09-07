@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+parzyste(int **tab, int n)
+{
+    int ilosc=0;
+    for (int i=0; i<n;i++)
+    {
+        for(int j=0; j<n;j++)
+        {
+            if(tab[i][j]%2==0)
+            {
+                ilosc++;
+            }
+        }
+    }
+    return ilosc;
+}
+
+int main()
+{
+    int ** tablica=malloc(3*sizeof(int*)); //tutaj ile wierszy
+    *tablica=malloc(3*sizeof(int)); // tutaj rezerwacja dla wiersza 0
+    *(tablica+1)=malloc(3*sizeof(int)); //tutaj rezerwacja dla wiersza 1
+    *(tablica+2)=malloc(3*sizeof(int)); //tutaj rezerwacja dla wiersza 2
+
+    tablica[0][0]=1;
+    tablica[0][1]=2;
+    tablica[0][2]=3;
+    tablica[1][0]=10;
+    tablica[1][1]=20;
+    tablica[1][2]=30;
+    tablica[2][0]=100;
+    tablica[2][1]=200;
+    tablica[2][2]=300;
+    printf("%d", parzyste(tablica, 3));
+
+    return 0;
+}

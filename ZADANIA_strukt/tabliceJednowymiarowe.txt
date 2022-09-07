@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+float a[]={1,2};
+float b[]={16,12,10,5};
+float c[]={0,45};
+void zamien(float *tab1, float *tab2, float *tab3)
+{
+    int rozmiar = sizeof(a)/4;
+    int rozmiar2 = sizeof(b)/4;
+    for ( int i = 0; i < rozmiar2; i++ )
+        {
+            float tmp = tab2[i];
+            tab3[i] = tmp;
+        }
+    int j =0;
+    if(rozmiar < rozmiar2)
+    {
+    for(int i = rozmiar2; i<rozmiar2+rozmiar; i++)
+    {
+        float a = tab1[j]-tab3[j];
+        tab3[i]=a;
+        j+=1;
+    }
+    }
+    else if(rozmiar > rozmiar2)
+    {
+    for(int i = rozmiar2; i<rozmiar; i++)
+    {
+        float a = tab1[j]-tab3[j];
+        tab3[i]=a;
+        j+=1;
+    }
+    }
+    else
+    {
+    for(int i = rozmiar2; i<rozmiar2*2; i++)
+        {
+        float a = tab1[j]-tab3[j];
+        tab3[i]=a;
+        j+=1;
+        }
+    }
+}
+
+int zad2()
+{
+float a[]={1,2};
+float b[]={16,12,10,5};
+float c[]={0,0,0,0,0};
+int rozmiar = sizeof(a)/4;
+int rozmiar2 = sizeof(b)/4;
+
+if (rozmiar < rozmiar2)
+{
+zamien(a,b,c);
+    for ( int i = 0; i < rozmiar2+rozmiar; i++)
+    {
+        printf("%f, ", c[i]);
+    }
+}
+else if(rozmiar > rozmiar2)
+{
+zamien(a,b,c);
+    for ( int i = 0; i < rozmiar; i++)
+    {
+        printf("%f, ", c[i]);
+    }
+}
+else
+{
+zamien(a,b,c);
+    for ( int i = 0; i < rozmiar2*2; i++)
+    {
+        printf("%f, ", c[i]);
+    }
+}
+}

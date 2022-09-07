@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct element{
+    int i;
+    struct element* next;
+};
+
+void wyswietlBezGlowy(struct element * Lista)
+{
+    struct element * wsk = Lista;
+    if(wsk==NULL)
+    {
+        printf("Lista jest pusta\n");
+    }
+    while(wsk!=NULL)
+    {
+        printf("%d, ", wsk->i);
+        wsk=wsk->next;
+    }
+    printf("\n-------\n");
+}
+
+void parzyste(struct element *lista){
+    struct element * wsk = lista;
+    while(wsk!=NULL)
+    {
+        if(wsk->i%2==0)
+        {
+            printf("%d, ", wsk->i);
+        }
+    wsk=wsk->next;
+    }
+}
+
+
+int main()
+{
+    //bez glowy
+    struct element * Lista1 = NULL; //lista pusta
+    //dodanie elementu na liste bez glowy
+    struct element * wsk = malloc(sizeof(struct element));
+    wsk->i=4;
+    wsk->next=NULL;
+    Lista1=wsk;
+    struct element * wsk2 = malloc(sizeof(struct element));
+    wsk2->i=6;
+    wsk2->next=NULL;
+    Lista1->next=wsk2;
+    struct element * wsk3 = malloc(sizeof(struct element));
+    wsk3->i=5;
+    wsk3->next=NULL;
+    Lista1->next->next=wsk3;
+    wyswietlBezGlowy(Lista1);
+    parzyste(Lista1);
+
+
+
+
+    //z glowa
+    struct element * Lista2 = malloc(sizeof(struct element));
+    Lista2->next=NULL; //lista pusta
+    return 0;
+}
